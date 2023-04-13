@@ -1,5 +1,6 @@
 package com.springinapppurchase.entity;
 
+import com.springinapppurchase.entity.user.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,6 +17,9 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subscription_plan_id")
     private SubscriptionPlan subscriptionPlan;

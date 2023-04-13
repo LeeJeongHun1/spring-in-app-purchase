@@ -4,6 +4,8 @@ import com.springinapppurchase.component.AppleInAppPurchaseProvider;
 import com.springinapppurchase.dto.AppleIAPResponseDto;
 import com.springinapppurchase.dto.ReceiptDto;
 import com.springinapppurchase.dto.SubscriptionDto;
+import com.springinapppurchase.entity.Subscription;
+import com.springinapppurchase.exception.NotFoundException;
 import com.springinapppurchase.repository.RepositoryWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -64,8 +66,8 @@ public class InAppPurchaseService {
 //         정상적인 구매일 경우 subscription, appleInAppPurchase 생성
 //        Subscription subscription = createSubscription(loginUserId, channelId, appleIAPResponseDto.getReceipt(), receiptDto);
         createSubscription(appleIAPResponseDto.getReceipt(), receiptDto);
-//        Subscription subscription = repositoryWrapper.subscription.findByChannelId(1l)
-//                .orElseThrow(() -> new NotFoundException("SUBSCRIPTION.NOT_FOUND"));
+        Subscription subscription = repositoryWrapper.subscription.findByUserId(1l)
+                .orElseThrow(() -> new NotFoundException("SUBSCRIPTION.NOT_FOUND"));
 //        return modelMapper.map(subscription, SubscriptionDto.class);
         return null;
     }
