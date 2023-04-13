@@ -1,0 +1,24 @@
+iap:
+  ios:
+    sandbox:
+      verify-receipt-url: https://sandbox.itunes.apple.com/verifyReceipt
+    production:
+      verify-receipt-url: https://buy.itunes.apple.com/verifyReceipt
+    password: 7fbcd2277e524055892a8894456a7888
+  android:
+    package-name: com.nbhd.ohmoss
+
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  datasource:
+    url: jdbc:mariadb://localhost:3306/spring_boot_exam
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: ${name}
+    password: ${pw}
