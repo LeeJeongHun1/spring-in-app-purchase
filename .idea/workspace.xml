@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="517e1d38-24c5-471e-ba1d-9c127e1c0de4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/config/OpenApiConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/spring-in-app-purchase.main.iml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/ApiError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/ErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/component/AppleInAppPurchaseProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/component/AppleInAppPurchaseProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/controller/InAppPurchaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/controller/InAppPurchaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/entity/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/entity/Subscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/repository/inAppPurchase/SubscriptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/repository/inAppPurchase/SubscriptionRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/service/InAppPurchaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/service/InAppPurchaseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
@@ -67,6 +71,14 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -98,7 +110,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/leejeonghun/spring-in-app-purchase/src/main/java/com/springinapppurchase/dto",
+    "last_opened_file_path": "/Users/leejeonghun/spring-in-app-purchase/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -106,13 +118,14 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propCompiler",
+    "settings.editor.selected.configurable": "File.Encoding",
     "spring.configuration.checksum": "04ea7b647d865766967253cf243589b1",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto" />
       <recent name="$PROJECT_DIR$/src/main/java/com/springinapppurchase" />
       <recent name="$PROJECT_DIR$/src/main/java/com/springinapppurchase/controller" />
@@ -179,12 +192,24 @@
       <updated>1681127313155</updated>
       <workItem from="1681127314605" duration="2115000" />
       <workItem from="1681129443994" duration="1832000" />
-      <workItem from="1681384575811" duration="3846000" />
+      <workItem from="1681384575811" duration="3899000" />
+      <workItem from="1681733649876" duration="2965000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/springinapppurchase/service/InAppPurchaseService.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

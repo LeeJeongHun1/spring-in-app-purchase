@@ -4,7 +4,6 @@ iap:
       verify-receipt-url: https://sandbox.itunes.apple.com/verifyReceipt
     production:
       verify-receipt-url: https://buy.itunes.apple.com/verifyReceipt
-    password: 7fbcd2277e524055892a8894456a7888
 #  android:
 #    package-name: com.nbhd.ohmoss
 
