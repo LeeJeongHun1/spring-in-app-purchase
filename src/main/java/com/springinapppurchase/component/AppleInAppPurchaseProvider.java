@@ -24,9 +24,6 @@ public class AppleInAppPurchaseProvider {
     @Value("${iap.ios.production.verify-receipt-url}")
     private String verifyProdUrl;
 
-    @Value("${iap.ios.password}")
-    private String password;
-
     private final RestTemplate restTemplate;
 
     public AppleIAPResponseDto verifyReceipt(ReceiptDto receiptDto) {

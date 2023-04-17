@@ -33,9 +33,9 @@ public class Subscription {
     @Column(name = "expiration_date")
     private Instant expirationDate;
 
-//    public void updateSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
-//        this.subscriptionPlan = subscriptionPlan;
-//    }
+    public void updateSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
+        this.subscriptionPlan = subscriptionPlan;
+    }
 
     public void updateExpire(Boolean expire) {
         isExpire = expire;
