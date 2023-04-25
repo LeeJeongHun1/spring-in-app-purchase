@@ -52,37 +52,37 @@ public class AppleInAppPurchaseProvider {
     private void verifyStatusCode(int statusCode) {
         switch (statusCode) {
             case 21000:
-                log.error("[Status code: " + statusCode + "] The request to the App Store was not made using the HTTP POST request method.");
+                log.error("[Status code: {}] The request to the App Store was not made using the HTTP POST request method.", statusCode);
                 break;
             case 21001:
-                log.error("[Status code: " + statusCode + "] This status code is no longer sent by the App Store.");
+                log.error("[Status code:  {}] This status code is no longer sent by the App Store.", statusCode);
                 break;
             case 21002:
-                log.error("[Status code: " + statusCode + "] The data in the receipt-data property was malformed or the service experienced a temporary issue. Try again.");
+                log.error("[Status code: {}] The data in the receipt-data property was malformed or the service experienced a temporary issue. Try again.", statusCode);
                 break;
             case 21003:
-                log.error("[Status code: " + statusCode + "] The receipt could not be authenticated.");
+                log.error("[Status code: {}] The receipt could not be authenticated.", statusCode);
                 break;
             case 21004:
-                log.error("[Status code: " + statusCode + "] The shared secret you provided does not match the shared secret on file for your account.");
+                log.error("[Status code: {}] The shared secret you provided does not match the shared secret on file for your account.", statusCode);
                 break;
             case 21005:
-                log.error("[Status code: " + statusCode + "] The receipt server was temporarily unable to provide the receipt. Try again.");
+                log.error("[Status code: {}] The receipt server was temporarily unable to provide the receipt. Try again.", statusCode);
                 break;
             case 21006:
-                log.error("[Status code: " + statusCode + "] This receipt is valid but the subscription has expired. When this status code is returned to your server, the receipt data is also decoded and returned as part of the response. Only returned for iOS 6-style transaction receipts for auto-renewable subscriptions.");
+                log.error("[Status code: {}] This receipt is valid but the subscription has expired. When this status code is returned to your server, the receipt data is also decoded and returned as part of the response. Only returned for iOS 6-style transaction receipts for auto-renewable subscriptions.", statusCode);
                 break;
             case 21008:
-                log.error("[Status code: " + statusCode + "] This receipt is from the production environment, but it was sent to the test environment for verification.");
+                log.error("[Status code: {}] This receipt is from the production environment, but it was sent to the test environment for verification.", statusCode);
                 break;
             case 21009:
-                log.error("[Status code: " + statusCode + "] Internal data access error. Try again later.");
+                log.error("[Status code: {}] Internal data access error. Try again later.", statusCode);
                 break;
             case 21010:
-                log.error("[Status code: " + statusCode + "] The user account cannot be found or has been deleted.");
+                log.error("[Status code: {}] The user account cannot be found or has been deleted.", statusCode);
                 break;
             default:
-                log.error("[Status code: " + statusCode + "] The receipt for the App Store is incorrect.");
+                log.error("[Status code: {}] The receipt for the App Store is incorrect.", statusCode);
                 break;
         }
         throw new BadRequestException("IAP.RECEIPT_INCORRECT");

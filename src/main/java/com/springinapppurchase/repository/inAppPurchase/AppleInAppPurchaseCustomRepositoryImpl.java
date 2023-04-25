@@ -1,8 +1,17 @@
 package com.springinapppurchase.repository.inAppPurchase;
 
+import com.querydsl.core.types.Expression;
+import com.querydsl.core.types.Projections;
+import com.springinapppurchase.dto.AppleInAppPurchaseDto;
+import com.springinapppurchase.dto.UserDto;
+import com.springinapppurchase.enumeration.PurchaseStatus;
 import com.springinapppurchase.repository.BaseRepositoryCustom;
 
 import javax.persistence.EntityManager;
+import java.util.List;
+import java.util.Optional;
+
+import static com.springinapppurchase.entity.QAppleInAppPurchase.appleInAppPurchase;
 
 //
 //import com.querydsl.core.BooleanBuilder;
@@ -28,21 +37,21 @@ import javax.persistence.EntityManager;
 //
 //
 public class AppleInAppPurchaseCustomRepositoryImpl extends BaseRepositoryCustom implements AppleInAppPurchaseCustomRepository {
-    //
+
     public AppleInAppPurchaseCustomRepositoryImpl(EntityManager entityManager) {
         super(entityManager);
     }
-}
-//
-//    @Override
-//    public List<AppleInAppPurchaseDto> findAllByTransactionIds(List<String> transactionIds) {
-//        return queryFactory.select(buildExpressionForAppleIAP()
-//                )
-//                .from(appleInAppPurchase)
-//                .where(appleInAppPurchase.transactionId.in(transactionIds))
-//                .fetch();
-//    }
-//
+
+    @Override
+    public List<AppleInAppPurchaseDto> findAllByTransactionIds(List<String> transactionIds) {
+        return queryFactory.select(buildExpressionForAppleIAP()
+                )
+                .from(appleInAppPurchase)
+                .where(appleInAppPurchase.transactionId.in(transactionIds))
+                .fetch();
+    }
+
+    //
 //    @Override
 //    public Page<AppleInAppPurchaseDto> findAll(Long userId, Long channelId) {
 //        Pageable pageable = PageRequest.of(0, 10);
@@ -78,43 +87,45 @@ public class AppleInAppPurchaseCustomRepositoryImpl extends BaseRepositoryCustom
 //    }
 //
 //
-//    @Override
-//    public Optional<AppleInAppPurchaseDto> findByOriginalTransactionId(String originalTransactionId) {
-//        return Optional.ofNullable(queryFactory.select(buildExpressionForAppleIAP())
-//                .from(appleInAppPurchase)
-////                .innerJoin(appleInAppPurchase.channel.user)
-//                .where(appleInAppPurchase.originalTransactionId.eq(originalTransactionId)
-//                        .and(appleInAppPurchase.status.eq(PurchaseStatus.COMPLETED)))
-//                .fetchFirst());
-//    }
-//
-//    @Override
-//    public void updateStatus(AppleInAppPurchaseDto appleInAppPurchaseDto) {
-//        queryFactory.update(appleInAppPurchase)
-//                .set(appleInAppPurchase.status, appleInAppPurchaseDto.getStatus())
-//                .where(appleInAppPurchase.id.eq(appleInAppPurchaseDto.getId()))
-//                .execute();
-//    }
-//
-//    private Expression<AppleInAppPurchaseDto> buildExpressionForAppleIAP() {
-//        return Projections.fields(AppleInAppPurchaseDto.class,
-//                appleInAppPurchase.id,
-//                buildExpressionForUser(),
-//                appleInAppPurchase.appItemId,
-//                appleInAppPurchase.productId,
-//                appleInAppPurchase.transactionId,
-//                appleInAppPurchase.originalTransactionId,
-//                appleInAppPurchase.status,
-//                appleInAppPurchase.purchaseDate,
-//                appleInAppPurchase.expirationDate
-//        );
-//    }
-//    private Expression<UserDto> buildExpressionForUser() {
-//        return Projections.fields(UserDto.class,
-//                appleInAppPurchase.user.id,
-//                appleInAppPurchase.user.userName
-//        ).as("user");
-//    }
+    @Override
+    public Optional<AppleInAppPurchaseDto> findByOriginalTransactionId(String originalTransactionId) {
+        return Optional.ofNullable(queryFactory.select(buildExpressionForAppleIAP())
+                .from(appleInAppPurchase)
+//                .innerJoin(appleInAppPurchase.channel.user)
+                .where(appleInAppPurchase.originalTransactionId.eq(originalTransactionId)
+                        .and(appleInAppPurchase.status.eq(PurchaseStatus.COMPLETED)))
+                .fetchFirst());
+    }
+
+    @Override
+    public void updateStatus(AppleInAppPurchaseDto appleInAppPurchaseDto) {
+        queryFactory.update(appleInAppPurchase)
+                .set(appleInAppPurchase.status, appleInAppPurchaseDto.getStatus())
+                .where(appleInAppPurchase.id.eq(appleInAppPurchaseDto.getId()))
+                .execute();
+    }
+
+    private Expression<AppleInAppPurchaseDto> buildExpressionForAppleIAP() {
+        return Projections.fields(AppleInAppPurchaseDto.class,
+                appleInAppPurchase.id,
+                buildExpressionForUser(),
+                appleInAppPurchase.appItemId,
+                appleInAppPurchase.productId,
+                appleInAppPurchase.transactionId,
+                appleInAppPurchase.originalTransactionId,
+                appleInAppPurchase.status,
+                appleInAppPurchase.purchaseDate,
+                appleInAppPurchase.expirationDate
+        );
+    }
+
+    private Expression<UserDto> buildExpressionForUser() {
+        return Projections.fields(UserDto.class,
+                appleInAppPurchase.user.id,
+                appleInAppPurchase.user.userName
+        ).as("user");
+    }
+}
 //
 //
 //    private BooleanExpression eqUserId(Long userId) {

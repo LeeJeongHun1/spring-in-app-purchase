@@ -1,4 +1,10 @@
 package com.springinapppurchase.repository.inAppPurchase;
+
+import com.springinapppurchase.dto.AppleInAppPurchaseDto;
+
+import java.util.List;
+import java.util.Optional;
+
 //
 //import com.springinapppurchase.dto.AppleInAppPurchaseDto;
 //import org.springframework.data.domain.Page;
@@ -8,11 +14,11 @@ package com.springinapppurchase.repository.inAppPurchase;
 //
 public interface AppleInAppPurchaseCustomRepository {
 //
-//    List<AppleInAppPurchaseDto> findAllByTransactionIds(List<String> transactionIds);
+    List<AppleInAppPurchaseDto> findAllByTransactionIds(List<String> transactionIds);
 //
 //    Page<AppleInAppPurchaseDto> findAll(Long userId, Long channelId);
 //    Optional<AppleInAppPurchaseDto> findById(Long userId, Long channelId, Long id);
-//    Optional<AppleInAppPurchaseDto> findByOriginalTransactionId(String originalTransactionId);
+    Optional<AppleInAppPurchaseDto> findByOriginalTransactionId(String originalTransactionId);
 //
-//    void updateStatus(AppleInAppPurchaseDto appleInAppPurchaseDto);
+    void updateStatus(AppleInAppPurchaseDto appleInAppPurchaseDto);
 }
