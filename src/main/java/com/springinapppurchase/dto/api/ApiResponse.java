@@ -1,4 +1,4 @@
-package com.springinapppurchase.dto;
+package com.springinapppurchase.dto.api;
 
 import lombok.AccessLevel;
 import lombok.Getter;

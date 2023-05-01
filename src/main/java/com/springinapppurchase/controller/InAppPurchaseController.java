@@ -1,8 +1,10 @@
 package com.springinapppurchase.controller;
 
-import com.springinapppurchase.dto.ApiResponse;
+import com.springinapppurchase.dto.api.ApiResponse;
 import com.springinapppurchase.dto.ReceiptDto;
 import com.springinapppurchase.dto.RefundDto;
+import com.springinapppurchase.dto.iap.google.GoogleInAppPurchaseDto;
+import com.springinapppurchase.dto.iap.google.PurchaseTokenDto;
 import com.springinapppurchase.service.InAppPurchaseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,7 +23,7 @@ public class InAppPurchaseController {
 
     @Operation(summary = "영수증 검증", description = "영수증 검증")
     @PostMapping("/users/{userId}/apple/in-app-purchases/verify-receipt")
-    public ResponseEntity<ApiResponse> verifyReceipt(
+    public ResponseEntity<ApiResponse> verifyReceiptForApple(
             @Valid @RequestBody ReceiptDto receiptDto,
             @PathVariable Long userId) {
         return ResponseEntity.ok(inAppPurchaseService.verifyReceipt(userId, receiptDto));
@@ -35,4 +37,12 @@ public class InAppPurchaseController {
         return ResponseEntity.ok().build();
     }
 
+
+    @Operation(summary = "영수증 검증", description = "영수증 검증")
+    @PostMapping("/users/{userId}/apple/in-app-purchases/verify-receipt")
+    public ResponseEntity<ApiResponse> verifyReceiptForGoogle(
+            @Valid @RequestBody PurchaseTokenDto purchaseTokenDto,
+            @PathVariable Long userId) {
+        return ResponseEntity.ok(inAppPurchaseService.verifyGoogleReceipt(userId, purchaseTokenDto));
+    }
 }

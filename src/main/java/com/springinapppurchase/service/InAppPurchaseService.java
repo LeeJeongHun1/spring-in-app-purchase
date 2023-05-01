@@ -2,14 +2,20 @@ package com.springinapppurchase.service;
 
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.google.api.services.androidpublisher.model.SubscriptionPurchaseLineItem;
 import com.springinapppurchase.component.AppleInAppPurchaseProvider;
+import com.springinapppurchase.component.GoogleInAppPurchaseProvider;
 import com.springinapppurchase.component.JwtProvider;
 import com.springinapppurchase.component.MessageManager;
-import com.springinapppurchase.dto.ApiResponse;
 import com.springinapppurchase.dto.AppleIAPResponseDto;
 import com.springinapppurchase.dto.AppleInAppPurchaseDto;
 import com.springinapppurchase.dto.ReceiptDto;
+import com.springinapppurchase.dto.api.ApiResponse;
+import com.springinapppurchase.dto.iap.google.GoogleIAPResponseDto;
+import com.springinapppurchase.dto.iap.google.PurchaseTokenDto;
+import com.springinapppurchase.dto.iap.google.SubscriptionState;
 import com.springinapppurchase.entity.AppleInAppPurchase;
+import com.springinapppurchase.entity.GoogleInAppPurchase;
 import com.springinapppurchase.entity.Subscription;
 import com.springinapppurchase.entity.SubscriptionPlan;
 import com.springinapppurchase.entity.user.User;
@@ -35,6 +41,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class InAppPurchaseService {
     private final AppleInAppPurchaseProvider appleInAppPurchaseProvider;
+    private final GoogleInAppPurchaseProvider googleInAppPurchaseProvider;
     private final RepositoryWrapper repositoryWrapper;
     private final MessageManager messageManager;
 //    private final ModelMapper modelMapper;
@@ -85,13 +92,15 @@ public class InAppPurchaseService {
 
         AppleIAPResponseDto appleIAPResponseDto = appleInAppPurchaseProvider.verifyReceipt(receiptDto);
 
+        // 최신 영수증
         findLatestReceipt(appleIAPResponseDto.getReceipt());
 
+        // 영수증 존재하지 않음
         if (appleIAPResponseDto.getReceipt().getInApp().isEmpty()) {
             return ApiResponse.error(messageManager.getMessage("IAP.RECEIPT_REQUIRED"), HttpStatus.BAD_REQUEST);
         }
 
-//         정상적인 구매일 경우 subscription, appleInAppPurchase 생성
+        // 정상적인 구매일 경우 subscription, appleInAppPurchase 생성
         createSubscription(userId, appleIAPResponseDto.getReceipt(), receiptDto);
         Subscription subscription = repositoryWrapper.subscription.findByUserId(userId)
                 .orElseThrow(() -> new NotFoundException("SUBSCRIPTION.NOT_FOUND"));
@@ -183,5 +192,69 @@ public class InAppPurchaseService {
                 return 30L;
         }
     }
+
+    public ApiResponse verifyGoogleReceipt(Long loginUserId, PurchaseTokenDto purchaseTokenDto) {
+        GoogleIAPResponseDto googleIAPResponseDto = googleInAppPurchaseProvider.verifyReceipt(purchaseTokenDto.getPurchaseToken());
+
+        if (repositoryWrapper.googleInAppPurchase.existsByOrderId(googleIAPResponseDto.getLatestOrderId())) {
+            return ApiResponse.error("IAP.RECEIPT_DUPLICATED", HttpStatus.BAD_REQUEST);
+        }
+
+        googleInAppPurchaseProvider.verifyAcknowledgementState(googleIAPResponseDto.getAcknowledgementState());
+        if (!googleIAPResponseDto.getSubscriptionState().equals(SubscriptionState.SUBSCRIPTION_STATE_ACTIVE)) {
+            googleInAppPurchaseProvider.verifySubscriptionState(googleIAPResponseDto.getSubscriptionState());
+        }
+        createSubscription(loginUserId,  googleIAPResponseDto, purchaseTokenDto);
+
+        Subscription subscription = repositoryWrapper.subscription.findByUserId(loginUserId)
+                .orElseThrow(() -> new NotFoundException("SUBSCRIPTION.NOT_FOUND"));
+        return ApiResponse.success(subscription);
+    }
+
+    private void createSubscription(Long userId, GoogleIAPResponseDto googleIAPResponseDto, PurchaseTokenDto purchaseTokenDto) {
+        for (SubscriptionPurchaseLineItem item : googleIAPResponseDto.getItems()) {
+            SubscriptionPlan subscriptionPlan = repositoryWrapper.subscriptionPlan.findByProductId(item.getProductId());
+            Subscription subscription = repositoryWrapper.subscription.findByUserId(userId)
+                    .orElse(null);
+
+            if (subscription == null) {
+                subscription = Subscription.builder()
+                        .subscriptionPlan(subscriptionPlan)
+                        .purchaseDate(googleIAPResponseDto.getStartTime())
+                        .expirationDate(googleIAPResponseDto.getStartTime()
+                                .plus(Duration.ofDays(getDuration(subscriptionPlan.getDuration()))))
+                        .isExpire(false)
+                        .build();
+            } else {
+                subscription.updateSubscriptionPlan(subscriptionPlan);
+                subscription.updatePurchaseDate(googleIAPResponseDto.getStartTime());
+                subscription.updateExpirationDate(subscription.getExpirationDate()
+                        .plus(Duration.ofDays(getDuration(subscriptionPlan.getDuration()))));
+                subscription.updateExpire(false);
+            }
+            repositoryWrapper.subscription.save(subscription);
+
+            GoogleInAppPurchase googleInAppPurchase = GoogleInAppPurchase.builder()
+                    .user(User.of().id(userId).build())
+                    .orderId(googleIAPResponseDto.getLatestOrderId())
+                    .purchaseToken(purchaseTokenDto.getPurchaseToken())
+                    .productId(item.getProductId())
+                    .currency(purchaseTokenDto.getCurrency())
+                    .price(purchaseTokenDto.getPrice())
+                    .status(PurchaseStatus.COMPLETED)
+                    .purchaseDate(googleIAPResponseDto.getStartTime())
+                    .expirationDate(Instant.parse(item.getExpiryTime()))
+                    .build();
+            repositoryWrapper.googleInAppPurchase.save(googleInAppPurchase);
+        }
+    }
+
+
+
+
+
+
+
+
 
 }
