@@ -28,6 +28,11 @@ public class GoogleInAppPurchaseProvider {
     @Value("${iap.android.package-name}")
     private String packageName;
 
+    /**
+     * 영수증 데이터(purchase token)으로 api 호출하여 정상적인 응답이 내려올 경우 responseDto에 매핑
+     * @param token
+     * @return
+     */
     public GoogleIAPResponseDto verifyReceipt(String token) {
 
         AndroidPublisher publisher = null;
@@ -35,7 +40,6 @@ public class GoogleInAppPurchaseProvider {
         try {
             publisher = googleCredentialsConfig.androidPublisher();
             AccessToken accessToken = googleCredentialsConfig.getAccessToken();
-
             AndroidPublisher.Purchases.Subscriptionsv2.Get get = publisher.purchases().subscriptionsv2()
                     .get(packageName, token);
             get.setAccessToken(accessToken.getTokenValue());

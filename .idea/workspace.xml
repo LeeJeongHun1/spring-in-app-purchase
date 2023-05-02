@@ -5,27 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="517e1d38-24c5-471e-ba1d-9c127e1c0de4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/component/GoogleInAppPurchaseProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/config/GoogleCredentialsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/iap/google/AcknowledgementState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/iap/google/GoogleIAPResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/iap/google/GoogleInAppPurchaseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/iap/google/GoogleRefundMessageDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/iap/google/PurchaseTokenDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/iap/google/SubscriptionState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/entity/GoogleInAppPurchase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/repository/inAppPurchase/GoogleInAppPurchaseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/controller/InAppPurchaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/controller/InAppPurchaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/ApiError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/api/ApiError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/dto/api/ApiResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/repository/RepositoryWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/repository/RepositoryWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/service/InAppPurchaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/service/InAppPurchaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/component/GoogleInAppPurchaseProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springinapppurchase/component/GoogleInAppPurchaseProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -210,7 +192,7 @@
       <workItem from="1681384575811" duration="3899000" />
       <workItem from="1681733649876" duration="4221000" />
       <workItem from="1682425402332" duration="2285000" />
-      <workItem from="1682428772995" duration="6495000" />
+      <workItem from="1682428772995" duration="8473000" />
     </task>
     <servers />
   </component>
@@ -222,7 +204,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/springinapppurchase/service/InAppPurchaseService.java</url>
-          <line>90</line>
+          <line>92</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

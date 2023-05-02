@@ -5,7 +5,7 @@ iap:
     production:
       verify-receipt-url: https://buy.itunes.apple.com/verifyReceipt
   android:
-    package-name: com.nbhd.ohmoss
+    package-name: com.app
 
 #  android:
 #    package-name: com.nbhd.ohmoss
